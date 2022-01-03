@@ -16,7 +16,6 @@ You can review our flowchart and the overview of the system in our ppt <br>
 P.S. This is our first project.<br>
      And since we are still on our first year of college, <br>
      we still have a lot of time to improve.
-     
      By the way please follow me and my classmate here on Github and thank you in advance. 🙇🏻<br>
      Only two of us in our group have Github accounts.<br>
      John Lloyd: <a href="https://github.com/Kiyo-18">LLOYD'S GITHUB</a> 
