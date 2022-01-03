@@ -8,4 +8,4 @@ This repository is for the website that we also made for our system. <br>
 For the source code for our system, <br>
 my classmate John Lloyd made a separate repository for it on his Github account<br>
 The link is provided below: <br>
-<a href="https://github.com/Kiyo-18/FoodWeb_E-Canteen_System-V.1.0.0" SOURCE CODE</a>
+<a href="https://github.com/Kiyo-18/FoodWeb_E-Canteen_System-V.1.0.0">SOURCE CODE</a>
