@@ -22,3 +22,6 @@ Only two of us in our group have Github accounts.<br>
 <b>John Lloyd: <a href="https://github.com/Kiyo-18">LLOYD'S GITHUB</a></b> 
 <br><b>Vin (Me): <a href="https://github.com/UrLostBoy">MY GITHUB</a></b>
      
+<b>Note:</b> Our teacher was impressed by our system as well as the presentation <br>
+and we got a high score for this project. <br>
+
