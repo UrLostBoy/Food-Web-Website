@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Food Web Info</title>
+  <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/YkgcKsz/Asset-3.png">
+  <style>
+    @import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-size: 10px;
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+    }
+    .container {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    p {
+      color: black;
+      font-size: 1.4rem;
+      margin-top: 5px;
+      line-height: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.05rem;
+    }
+    .section-title {
+      font-size: 4rem;
+      font-weight: 300;
+      color: black;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      text-align: center;
+    }
+    .section-title span {
+      color: royalblue;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 10px 30px;
+      color: white;
+      background-color: transparent;
+      border: 3px solid orangered;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      margin-top: 30px;
+      transition: 0.3s ease;
+      transition-property: background-color, color;
+    }
+    .cta:hover {
+      color: white;
+      background-color: orangered;
+    }
+    .brand h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      color: white;
+      float: left;
+    }
+    .brand h1 span1 {
+      color: orangered;
+    }
+    .brand h1 span2 {
+      color: royalblue;
+    }
+
+    /* Header section */
+    #header {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: auto;
+    }
+    #header .header {
+      min-height: 8vh;
+      background-color: rgba(31, 30, 30, 0.24);
+      transition: 0.3s ease background-color;
+    }
+    #header .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      max-width: 1300px;
+      padding: 0 10px;
+    }
+    #header .nav-list ul {
+      list-style: none;
+      position: absolute;
+      background-color: rgb(31, 30, 30);
+      width: 100vw;
+      height: 100vh;
+      left: 100%;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      overflow-x: hidden;
+      transition: 0.5s ease left;
+    }
+    #header .nav-list ul.active {
+      left: 0%;
+    }
+    #header .nav-list ul a {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      padding: 20px;
+      display: block;
+    }
+    #header .nav-list ul a::after {
+      content: attr(data-after);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      color: rgba(240, 248, 255, 0.021);
+      font-size: 13rem;
+      letter-spacing: 50px;
+      z-index: -1;
+      transition: 0.3s ease letter-spacing;
+    }
+    #header .nav-list ul li:hover a::after {
+      transform: translate(-50%, -50%) scale(1);
+      letter-spacing: initial;
+    }
+    #header .nav-list ul li:hover a {
+      color: orangered;
+    }
+    #header .hamburger {
+      height: 60px;
+      width: 60px;
+      display: inline-block;
+      border: 3px solid white;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      cursor: pointer;
+      transform: scale(0.8);
+      margin-right: 20px;
+    }
+    #header .hamburger:after {
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      border: 3px solid white;
+      animation: hamburger_puls 1s ease infinite;
+    }
+    #header .hamburger .bar {
+      height: 2px;
+      width: 30px;
+      position: relative;
+      background-color: white;
+      z-index: -1;
+    }
+    #header .hamburger .bar::after,
+    #header .hamburger .bar::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      background-color: white;
+      transition: 0.3s ease;
+      transition-property: top, bottom;
+    }
+    #header .hamburger .bar::after {
+      top: 8px;
+    }
+    #header .hamburger .bar::before {
+      bottom: 8px;
+    }
+    #header .hamburger.active .bar::before {
+      bottom: 0;
+    }
+    #header .hamburger.active .bar::after {
+      top: 0;
+    }
+    /* End Header section */
+
+    /* Home Section */
+    #home {
+      background-image: url(https://i.ibb.co/9g6NGtg/Canteen-of-Urumqi-Senior-High-School.jpg);
+      background-size: cover;
+      background-position: top center;
+      position: relative;
+      z-index: 1;
+    }
+    #home::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      opacity: 0.7;
+      z-index: -1;
+    }
+    #home .home {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 50px;
+      justify-content: flex-start;
+    }
+    #home h1 {
+      display: block;
+      width: fit-content;
+      font-size: 4rem;
+      position: relative;
+      color: transparent;
+      animation: text_reveal 0.5s ease forwards;
+      animation-delay: 1s;
+    }
+    #home h1:nth-child(1) {
+      animation-delay: 1s;
+    }
+    #home h1:nth-child(2) {
+      animation-delay: 2s;
+    }
+    #home h1:nth-child(3) {
+      animation: text_reveal_name 0.5s ease forwards;
+      animation-delay: 3s;
+    }
+    #home h1 span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background-color: orangered;
+      animation: text_reveal_box 1s ease;
+      animation-delay: 0.5s;
+    }
+    #home h1:nth-child(1) span {
+      animation-delay: 0.5s;
+    }
+    #home h1:nth-child(2) span {
+      animation-delay: 1.5s;
+    }
+    #home h1:nth-child(3) span {
+      animation-delay: 2.5s;
+    }
+
+    /* End Home Section */
+
+    /* About Section */
+    #about .about {
+      flex-direction: column;
+      text-align: center;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+    #about .about-top {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #about .about-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+    #about .about-item {
+      flex-basis: 80%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 30px;
+      border-radius: 10px;
+      background-image: color;
+      background-color: royalblue;
+      background-size: cover;
+      margin: 10px 5%;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    #abouts .about-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+      opacity: 0.9;
+      z-index: -1;
+    }
+    #about .about-bottom .icon {
+      height: 80px;
+      width: 80px;
+      margin-bottom: 20px;
+    }
+    #about .about-item h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    #about .about-item p {
+      color: white;
+      text-align: left;
+    }
+    /* End About Section */
+
+    /* Flowchart section */
+    #flowchart .flowchart {
+      flex-direction: column;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+    #flowchart .flowchart-phrase {
+      text-align: center;
+    }
+    #flowchart .flowchart-header h1 {
+      margin-bottom: 50px;
+    }
+    #flowchart .flowchart-top {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #flowchart .flowchart-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+    #flowchart .all-flowchart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #flowchart .flowchart-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 80%;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    #flowchart .flowchart-info {
+      padding: 30px;
+      flex-basis: 50%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      background-image: linear-gradient(60deg, #0d6edd 0%, #e25c03 100%);
+      color: white;
+    }
+    #flowchart .flowchart-info h1 {
+      font-size: 4rem;
+      font-weight: 500;
+    }
+    #flowchart .flowchart-info h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    #flowchart .flowchart-info p {
+      color: white;
+    }
+    #flowchart .flowchart-img {
+      flex-basis: 50%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    #flowchart .flowchart-img:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-image: linear-gradient(60deg, #233446 0%, #485563 100%);
+      opacity: 0.7;
+    }
+    #flowchart .flowchart-img img {
+      transition: 0.3s ease transform;
+    }
+    #flowchart .flowchart-item:hover .flowchart-img img {
+      transform: scale(1.1);
+    }
+    /* End Flowchart section */
+
+    /* System Section */
+    #system .system {
+      flex-direction: column-reverse;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px;
+    }
+    #system .col-left {
+      width: 250px;
+      height: 360px;
+    }
+    #system .col-right {
+      width: 100%;
+    }
+    #system .col-right h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+      margin-bottom: 10px;
+    }
+    #system .col-right p {
+      margin-bottom: 20px;
+    }
+    #system .col-right .cta {
+      color: black;
+      margin-bottom: 50px;
+      padding: 10px 20px;
+      font-size: 2rem;
+    }
+    /* End System Section */
+
+    /* Team Section */
+    #team .team {
+      flex-direction: row;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 10%;
+    }
+    #team .team-items {
+      width: 300px;
+    }
+    #team .team-item-1{
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0px 0px 18px 0 #0000002c;
+      transition: 0.3s ease box-shadow;
+    }
+    #team .team-item-2 {
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0px 0px 18px 0 #0000002c;
+      transition: 0.3s ease box-shadow;
+    }
+    #team .team-item-1:hover {
+      box-shadow: 0px 0px 5px 0 #0000002c;
+    } 
+    #team .team-item-2:hover {
+      box-shadow: 0px 0px 5px 0 #0000002c;
+    }
+    #team .team-icon {
+      width: 70px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    #team .team-info h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    #team .team-info h2 {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+    #team .team-info .cta {
+      color: black;
+      margin-bottom: 50px;
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+    /* End Team Section */
+
+    /* Footer */
+    #footer {
+      background-image: linear-gradient(60deg, #045bbe 0%, #ca4e06 100%);
+    }
+    #footer .footer {
+      min-height: 200px;
+      flex-direction: column;
+      padding-top: 50px;
+      padding-bottom: 10px;
+    }
+    .footer h1 span1 {
+      color: orangered;
+    }
+    .footer h1 span2 {
+      color: royalblue;
+    }
+    #footer h2 {
+      color: white;
+      font-weight: 500;
+      font-size: 1.8rem;
+      letter-spacing: .1rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    #footer p {
+      color: white;
+      font-size: 1.3rem;
+    }
+    /* End Footer */
+
+    /* Keyframes */
+    @keyframes hamburger_puls {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.4);
+      }
+    }
+    @keyframes text_reveal_box {
+      50% {
+        width: 100%;
+        left: 0;
+      }
+      100% {
+        width: 0;
+        left: 100%;
+      }
+    }
+    @keyframes text_reveal {
+      100% {
+        color: white;
+      }
+    }
+    @keyframes text_reveal_name {
+      100% {
+        color: orangered;
+        font-weight: 500;
+      }
+    }
+    /* End Keyframes */
+
+    /* Media Query For Tablet */
+    @media only screen and (min-width: 768px) {
+      .cta {
+        font-size: 2.5rem;
+        padding: 20px 60px;
+      }
+      h1.section-title {
+        font-size: 6rem;
+      }
+
+      /* Home */
+      #home h1 {
+        font-size: 7rem;
+      }
+      /* End Home */
+
+      /* About */
+      #about .about-bottom .about-item {
+        flex-basis: 45%;
+        margin: 2.5%;
+      }
+      /* End About */
+
+      /* Flowchart */
+      #flowchart .flowchart-item {
+        flex-direction: row;
+      }
+      #flowchart .flowchart-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+      #flowchart .flowchart-item {
+        height: 400px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+      }
+      #flowchart .all-flowchart .flowchart-info {
+        height: 100%;
+      }
+      #flowchart .all-flowchart .flowchart-img {
+        height: 100%;
+      }
+      /* End Flowchart */
+
+      /* System */
+      #system .system {
+        flex-direction: row;
+      }
+      #system .col-left {
+        width: 600px;
+        height: 400px;
+        padding-left: 60px;
+      }
+      #system .system .col-left .system-img::after {
+        left: -45px;
+        top: 34px;
+        height: 98%;
+        width: 98%;
+        border: 10px solid crimson;
+      }
+      #system .col-right {
+        text-align: left;
+        padding: 30px;
+      }
+      #system .col-right h1 {
+        text-align: left;
+      }
+      /* End System */
+
+      /* Team */
+      #team .team {
+        flex-direction: column;
+        padding: 100px 0;
+        align-items: center;
+        justify-content: center;
+        min-width: 20vh;
+      }
+      #team .team-items {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        margin: 0;
+      }
+      /* End team */
+    }
+    /* End Media Query For Tablet */
+
+    /* Media Query For Desktop */
+    @media only screen and (min-width: 1200px) {
+      /* header */
+      #header .hamburger {
+        display: none;
+      }
+      #header .nav-list ul {
+        position: initial;
+        display: block;
+        height: auto;
+        width: fit-content;
+        background-color: transparent;
+      }
+      #header .nav-list ul li {
+        display: inline-block;
+      }
+      #header .nav-list ul li a {
+        font-size: 1.8rem;
+      }
+      #header .nav-list ul a:after {
+        display: none;
+      }
+      #team .team-items .team-item-1 .team-item-2{
+        flex-basis: 22%;
+        margin: 1.5%;
+      }
+      #flowchart .flowchart-bottom .flowchart-item {
+        flex-basis: 22%;
+        margin: 1.5%;
+      }
+      /* End header */
+    }
+    /* End  Media Query For Desktop */
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#home">
+            <h1><span1>F</span1>ood <span2>W</span2>eb</h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger"><div class="bar"></div></div>
+          <ul>
+            <li><a href="#home" data-after="Home">Home</a></li>
+            <li><a href="#about" data-after="Service">About</a></li>
+            <li><a href="#flowchart" data-after="Projects">Flowchart</a></li>
+            <li><a href="#system" data-after="About">The System</a></li>
+            <li><a href="#team" data-after="Contact">Creators</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+
+  <!-- Home Section  -->
+  <section id="home">
+    <div class="home container">
+      <div>
+        <h1>Hello, <span></span></h1>
+        <h1>Welcome to <span></span></h1>
+        <h1>Food Web <span></span></h1>
+        <a href="#system" type="button" class="cta">The System</a>
+      </div>
+    </div>
+  </section>
+  <!-- End Home Section  -->
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about container">
+      <div class="about-top">
+        <h1 class="section-title"><span>A</span>bout</h1>
+        <p>Food Web is an E-canteen inspired by Food Ordering System. <br>
+           It allows you to pre-order your lunch and snacks <br>
+           without going to the school canteen. <br>
+           Accessible, Free, and Convenient <br>
+        </p>
+      </div>
+      <div class="about-bottom">
+        <div class="about-item">
+          <h2><b>Statement of the Problem</b></h2>
+          <p>
+            1. Skipping breakfast resulting to hunger during class hours. <br>
+            2. Crowded canteens during lunchtime. <br>
+            3. No time to buy lunch or snack because of overloaded schedule. <br>
+          </p>
+        </div>
+        <div class="about-item">
+          <h2>Concept & Idea</h2>
+          <p>
+            Our System called Food Web is inspired by Food Ordering System <br>
+            Wherein it allows customers to place an order at virtually any time, 
+            from anywhere, saving the time and resources
+            typically spent on travelling to pick up a meal.
+          </p>
+        </div>
+        <div class="about-item">
+          <h2>Pros</h2>
+          <p>
+            <b>1. Convenience</b> <br>
+            - Enables your students to place orders while they have tight schedules. <br>
+            <b>2. Pre-Order </b><br>
+            - It's grab & go after you've placed your pre-order.  <br>
+            <b>3. Simple & Stress-Free</b> <br>
+            - Won't wait in line anymore especially when canteens are over crowded during lunch time. <br>
+            <b>4. Prevents Food Insecurity</b> <br>
+            - College students today are having trouble eating healthy due to a lack of time and funds. <br>
+          </p>
+        </div>
+        <div class="about-item">
+          <h2>Cons & Loss of Data</h2>
+          <p>
+            <b>1. Power Outage and Connectivity</b> <br>
+            - The system is online-based basically it needs internet connection. <br>
+            <b>2. Loss of Data</b> <br>
+            - We made sure that any information or data that we input in the system is being kept on the database. <br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <!-- Flowchart Section -->
+  <section id="flowchart">
+    <div class="flowchart container">
+      <div class="flowchart-header">
+        <h1 class="section-title">The <span>Flowchart</span></h1>
+        <div class="flowchart-top"></div>
+        <div class="flowchart-phrase">
+        <p>This is the flowchart of our system. <br>
+           In here, we will show you the input, process, output <br>
+           and how our system work through the use of flowchart <br>
+       </p>
+      </div>
+      <div class="flowchart-bottom">
+      <div class="all-flowchart">
+        <div class="flowchart-item">
+          <div class="flowchart-info">
+            <h1>Start</h1>
+            <p>
+              Our system comes with a log-in interface. <br>
+              So, in order to access the Food Web menu, you need to have an account for you to log in.
+              When starting the system, there will be three options that will have to choose: <br>
+              <b>1. Sign Up </b> <br>
+              <b>2. Log In </b> <br>
+              <b>3. Exit </b> <br>
+            </p>
+          </div>
+          <div class="flowchart-img">
+            <img src="https://i.ibb.co/WDc9dbS/start.png" alt="img">
+          </div>
+        </div>
+        <div class="flowchart-item">
+          <div class="flowchart-info">
+            <h1>Sign Up</h1>
+            <h2>Option 1</h2>
+            <p>If you choose option 1 in the system you will be directed to sign up page wherein you will be asked to fill up the following details: <br>
+              Full name, Username, Password, Confirm Password <br>
+              The data inputted in the system will be saved into the database. <br>
+              Then after signing up, Food Web menu will show up wherein you are able to choose a variety of dishes to order.
+            </p>
+          </div>
+          <div class="flowchart-img">
+            <img src="https://i.ibb.co/LJWsLj9/input-1.png" alt="img">
+          </div>
+        </div>
+        <div class="flowchart-item">
+          <div class="flowchart-info">
+            <h1>Log In</h1>
+            <h2>Option 2</h2>
+            <p>If you choose option 2 in the system you will be directed to log in page wherein ou will be asked to fill up the following details: <br>
+               Your Username and Password <br>
+               Any information or data that you inputted when you signed up in the system is being kept on the database <br>
+               So, when you log in the database will read your saved data on the database.
+               After you log in, Food Web menu will show up wherein you are able to choose a variety of dishes to order.
+            </p>
+          </div>
+          <div class="flowchart-img">
+            <img src="https://i.ibb.co/jVWNkJ9/blabla.jpg" alt="img">
+          </div>
+        </div>
+        <div class="flowchart-item">
+          <div class="flowchart-info">
+            <h1>Exit</h1>
+            <h2>Option 3</h2>
+            <p>
+              If you choose option 3 in the system which is "Exit" <br>
+              "Thank you, please come back again" will be displayed on the screen and the system will return to 0
+            </p>
+          </div>
+          <div class="flowchart-img">
+            <img src="https://i.ibb.co/ssjf81j/hohoho.jpg" alt="img">
+          </div>
+        </div>
+  <!-- End Flowchart Section -->
+
+  <!-- The System Section -->
+  <section id="system">
+    <div class="system container">
+      <div class="col-left">
+        <div class="system-img">
+          <img src="https://i.ibb.co/YkgcKsz/Asset-3.png" alt="img">
+        </div>
+      </div>
+      <div class="col-right">
+        <h1 class="section-title">The <span>System</span></h1>
+        <h2>Food Web (E-Canteen System)</h2>
+        <p>
+          You can download the Food Web System on GitHub. <br>
+          The zip file comes with a source code, powerpoint presentation, and the Flowchart. <br>
+          Just click the button below:
+        </p>
+        <a href="https://github.com/Kiyo-18/FoodWeb_E-Canteen_System-V.1.0.0?fbclid=IwAR14PuEmdK4I2KFMgisrXt_seLdWXMNFQJmTWIXL03VAHbzomJodyAzW6rw" class="cta">Download Now</a>
+      </div>
+    </div>
+  </section>
+  <!-- End The System Section -->
+
+  <!-- Team Section -->
+  <section id="team">
+    <div class="team-container">
+      <div>
+        <h1 class="section-title">The <span>Team</span></h1>
+      </div>
+      <div class="team-items">
+        <div class="team-item-1">
+          <div class="team-icon"><img src="https://i.ibb.co/1fghgk9/Lloyd.png"></div>
+          <div class="team-info">
+            <h1>John Lloyd de Sape <br></h1>
+            <h2><a href="https://www.facebook.com/GodsNotD3ad" class="cta">Facebook Profile</a></h2>
+            <h2>johnlloyd.desape@evsu.edu.ph</h2>
+          </div>
+        </div>
+        &nbsp;
+        <div class="team-item-1">
+          <div class="team-icon"><img src="https://i.ibb.co/7SNfHGj/Brint.png"></div>
+          <div class="team-info">
+            <h1>John Brint Aranez</h1><br>
+            <h2><a href="https://www.facebook.com/johnbrintaranez28" class="cta">Facebook Profile</a></h2>
+            <h2>johnbrint.aranez@evsu.edu.ph</h2>
+          </div>
+        </div>
+        &nbsp;
+        <div class="team-item-2">
+          <div class="team-icon"><img src="https://i.ibb.co/VSrDBTC/Harlene.png"></div>
+          <div class="team-info">
+            <h1>Harlene <br>
+                Cumpas <br></h1>
+            <h2><a href="https://www.facebook.com/harlene.cumpas.5" class="cta">Facebook Profile</a></h2>
+            <h2>harlene.cumpas@evsu.edu.ph</h2>
+          </div>
+        </div>
+        &nbsp;
+        <div class="team-item-2">
+          <div class="team-icon"><img src="https://i.ibb.co/JFrGdgs/Vin.png"></div>
+          <div class="team-info">
+            <h1>Marvin <br>
+                Monreal <br></h1>
+            <h2><a href="https://www.facebook.com/markvinz.pocson" class="cta">Facebook Profile</a></h2>
+            <h2>marvin.monreal@evsu.edu.ph</h2>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <!--End Team Section -->
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand">
+        <h1><span1>F</span1>ood <span2>W</span2>eb</h1>
+      </div>
+      <p>Copyright © 2021 BSIT 1A <br>
+        All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+  
+  <script src="./app.js">
+const hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
+const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
+const menu_item = document.querySelectorAll('.header .nav-bar .nav-list ul li a');
+const header = document.querySelector('.header.container');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobile_menu.classList.toggle('active');
+});
+
+document.addEventListener('scroll', () => {
+    var scroll_position = window.scrollY;
+    if (scroll_position > 250) {
+        header.style.backgroundColor = '#29323c';
+    } else {
+        header.style.backgroundColor = 'transparent';
+    }
+});
+
+menu_item.forEach((item) => {
+    item.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobile_menu.classList.toggle('active');
+    });
+});
+
+var controller = new ScrollMagic.Controller();
+var scene = new ScrollMagic.Scene({
+        triggerElement: '.two'
+    })
+    .setClassToggle('.two', 'show')
+    .addTo(controller);
+
+var controller = new ScrollMagic.Controller();
+var scene = new ScrollMagic.Scene({
+        triggerElement: '.three'
+    })
+    .setClassToggle('.three', 'show')
+    .addTo(controller);
+
+var controller = new ScrollMagic.Controller();
+var scene = new ScrollMagic.Scene({
+        triggerElement: '.four'
+    })
+    .setClassToggle('.four', 'show')
+    .addTo(controller);
+
+var controller = new ScrollMagic.Controller();
+var scene = new ScrollMagic.Scene({
+        triggerElement: '.five'
+    })
+    .setClassToggle('.five', 'show')
+    .addTo(controller);
+  </script>
+</body>
+
+</html>
