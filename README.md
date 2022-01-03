@@ -8,9 +8,9 @@ This repository is for the website that we also made for our system. <br>
 For the source code of our system, <br>
 my classmate John Lloyd made a separate repository on his Github account and you can download it<br>
 The link is provided below: 👇 <br>
-<a href="https://github.com/Kiyo-18/FoodWeb_E-Canteen_System-V.1.0.0">FOOD WEB SOURCE CODE</a>
+<a href="https://github.com/Kiyo-18/FoodWeb_E-Canteen_System-V.1.0.0">FOOD WEB SOURCE CODE</a> <br>
 You can also download the powerpoint presentation that we presented to our teacher. 👇<br>
-<a href="https://www.mediafire.com/file/855xbm9sqgdr5j3/FOOD+WEB.pptx/file">FOOD WEB POWERPOINT</a>
+<a href="https://www.mediafire.com/file/855xbm9sqgdr5j3/FOOD+WEB.pptx/file">FOOD WEB POWERPOINT</a> <br>
 You can review our flowchart and the overview of the system in our ppt <br>
 <br>
 P.S. This is our first project.<br>
