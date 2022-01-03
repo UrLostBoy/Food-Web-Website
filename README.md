@@ -19,6 +19,6 @@ P.S. This is our first project.<br>
      
      By the way please follow me and my classmate here on Github and thank you in advance. 🙇🏻<br>
      Only two of us in our group have Github accounts.<br>
-     John Lloyd: <a href="https://github.com/Kiyo-18">LLOYD'S GITHUB</a><br>
-     Vin (Me): <a href="https://github.com/UrLostBoy">MY GITHUB</a>
+     John Lloyd: <a href="https://github.com/Kiyo-18">LLOYD'S GITHUB</a> 
+     <br>Vin (Me): <a href="https://github.com/UrLostBoy">MY GITHUB</a>
      
